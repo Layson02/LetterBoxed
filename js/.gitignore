@@ -1,0 +1,20 @@
+# Dependências
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Configurações de Ambiente (Segurança)
+.env
+.env.test
+.env*.local
+
+# Variáveis e configurações locais de IDE/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
