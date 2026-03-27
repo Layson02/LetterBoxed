@@ -1,5 +1,6 @@
-require('dotenv').config();
-const { Sequelize } = require('sequelize');
+import dotenv from 'dotenv';
+dotenv.config();
+import { Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize(
   process.env.DB_NAME || 'filmes_bd',
@@ -24,4 +25,4 @@ async function testarConexao() {
 
 testarConexao();
 
-module.exports = sequelize;
+export default sequelize;
