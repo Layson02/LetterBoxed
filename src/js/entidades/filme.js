@@ -10,6 +10,7 @@ class Filme {
         this.avaliacoes = avaliacoes;
         this.notaPlataforma = notaPlataforma;
         this.poster = poster;
+        this.roteiristas = roteiristas;
     }
 }
 
