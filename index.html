@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LetterBoxed - Home</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <h1>LetterBoxed</h1>
+        <p>Seu catálogo digital de filmes.</p>
+    </header>
+
+    <main>
+        <section class="container-login">
+            <h2>Fazer Login</h2>
+            
+            <form id="form-login" action="src/catalogo.html" method="GET">
+                <div class="grupo-input">
+                    <label for="usuario">Usuário ou E-mail:</label>
+                    <input type="text" id="usuario" name="usuario" required placeholder="Digite seu usuário ou e-mail">
+                </div>
+                
+                <div class="grupo-input">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
+                </div>
+
+                <button type="submit" id="btn-entrar">Entrar</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="./js/login.js" defer></script>
+</body>
+</html>
