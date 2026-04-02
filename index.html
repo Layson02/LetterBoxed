@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LetterBoxed - Home</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./src/css/style.css">
 </head>
 <body>
     <header>
@@ -18,13 +18,13 @@
             
             <form id="form-login" action="src/catalogo.html" method="GET">
                 <div class="grupo-input">
+                    <input type="text" id="usuario" name="usuario"  required placeholder="">
                     <label for="usuario">Usuário ou E-mail:</label>
-                    <input type="text" id="usuario" name="usuario" required placeholder="Digite seu usuário ou e-mail">
                 </div>
                 
                 <div class="grupo-input">
+                    <input type="password" id="senha" name="senha" required placeholder="">
                     <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
                 </div>
 
                 <button type="submit" id="btn-entrar">Entrar</button>
@@ -32,6 +32,6 @@
         </section>
     </main>
 
-    <script src="./js/login.js" defer></script>
+    <script src="./src/js/login.js" defer></script>
 </body>
 </html>
