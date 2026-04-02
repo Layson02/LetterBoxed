@@ -18,20 +18,20 @@
             
             <form id="form-login" action="src/catalogo.html" method="GET">
                 <div class="grupo-input">
+                    <input type="text" id="usuario" name="usuario"  required placeholder="">
                     <label for="usuario">Usuário ou E-mail:</label>
-                    <input type="text" id="usuario" name="usuario" required placeholder="Digite seu usuário ou e-mail">
                 </div>
                 
                 <div class="grupo-input">
+                    <input type="password" id="senha" name="senha" required placeholder="">
                     <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
                 </div>
 
                 <button type="submit" id="btn-entrar">Entrar</button>
             </form>
         </section>
     </main>
-
+<!-- PARA Gabriel: não existe um arquivo chamado login.js dentro da pasta src/js, apenas subpastas (api, app, etc). -->
     <script src="./src/js/login.js" defer></script>
 </body>
 </html>
