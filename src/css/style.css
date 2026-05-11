@@ -9,6 +9,7 @@
 
 body{
     font-family: Arial;
+    background: url("https://images.unsplash.com/photo-1524985069026-dd778a71c7b4") no-repeat center center/cover;
     background-color: rgb(32, 37, 41);
     color: #ffffff
 }
