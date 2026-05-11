@@ -8,12 +8,12 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 
-import { FilmesController } from './controllers/FilmesController.js';
+// ==========================================
+// IMPORTAÇÃO DAS ROTAS
+// ==========================================
+import filmesRotas from './rotas/FilmesRotas.js';
 
-// Instanciamos as controllers
-const filmesController = new FilmesController();
-
-// Rota de teste
+// Rota de teste central
 app.get('/health', (req, res) => {
     res.json({
         status: 'UP',
@@ -21,8 +21,8 @@ app.get('/health', (req, res) => {
     });
 });
 
-// Endpoint: Listar todos os filmes (Busca do TMDB no momento)
-app.get('/filmes', filmesController.listar);
+// Anexando o roteador de filmes: tudo que começar com "/filmes" cai nesse gerenciador
+app.use('/filmes', filmesRotas);
 
 // Inicialização do Servidor
 app.listen(PORT, () => {

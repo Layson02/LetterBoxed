@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LetterBoxed - Home</title>
     <link rel="stylesheet" href="./src/css/style.css">
 </head>
+
 <body>
     <header>
         <h1>LetterBoxed</h1>
@@ -15,13 +17,13 @@
     <main>
         <section class="container-login">
             <h2>Fazer Login</h2>
-            
+
             <form id="form-login" action="src/catalogo.html" method="GET">
                 <div class="grupo-input">
-                    <input type="text" id="usuario" name="usuario"  required placeholder="">
+                    <input type="text" id="usuario" name="usuario" required placeholder="">
                     <label for="usuario">Usuário ou E-mail:</label>
                 </div>
-                
+
                 <div class="grupo-input">
                     <input type="password" id="senha" name="senha" required placeholder="">
                     <label for="senha">Senha:</label>
@@ -31,7 +33,8 @@
             </form>
         </section>
     </main>
-<!-- PARA Gabriel: não existe um arquivo chamado login.js dentro da pasta src/js, apenas subpastas (api, app, etc). -->
-    <script src="./src/js/login.js" defer></script>
+
+    <script src="./src/js/app/login.js" defer></script>
 </body>
+
 </html>
