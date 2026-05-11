@@ -1,29 +1,29 @@
 /* CSS styles para o LetterBoxed */
 /* Bora Marcos! */
 
-*{
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     font-family: Arial;
     background-color: rgb(32, 37, 41);
     color: #ffffff
 }
 
-header{
+header {
     background-color: rgb(0, 0, 0);
     padding: 15px 30px;
     border-bottom: 2px solid #f5c518;
-    display:flex;
+    display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
 }
 
-header h1{
+header h1 {
     display: inline-block;
     background-color: #f5c518;
     color: #000;
@@ -33,7 +33,7 @@ header h1{
     font-weight: bold;
 }
 
-header p{
+header p {
     margin-top: 10px;
     font-size: 15px;
     color: #ccc;
@@ -47,7 +47,7 @@ main {
     height: 80vh;
 }
 
-.container-login{
+.container-login {
     background-color: #1a1a1a;
     padding: 30px;
     width: 350px;
@@ -55,7 +55,7 @@ main {
     border: 3px solid #333;
 }
 
-.container-login h2{
+.container-login h2 {
     margin-bottom: 20px;
     color: #f5c518;
 }
@@ -94,8 +94,8 @@ main {
 }
 
 /* Quando o input está focado OU preenchido */
-.grupo-input input:focus + label,
-.grupo-input input:valid + label {
+.grupo-input input:focus+label,
+.grupo-input input:valid+label {
     top: -8px;
     font-size: 12px;
     color: #f5c518;
@@ -106,13 +106,13 @@ main {
     border: 2px solid #f5c518;
 }
 
-#btn-entrar{
+#btn-entrar {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
     border-radius: 4px;
     /*background-color: #6e6060;*/
-    color:#000;
+    color: #000;
     font-weight: bold;
     cursor: pointer;
 }
@@ -120,4 +120,3 @@ main {
 #btn-entrar:hover {
     background-color: #ffd54f;
 }
-
