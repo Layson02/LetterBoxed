@@ -24,16 +24,15 @@ class Tmdb {
 
     static baseUrl = 'https://api.themoviedb.org/3';
 
-    // Busca filmes de determinados gêneros a partir do ano de 2020
-    static async buscarFilmesPorGenero(pagina = 1, anoMinimo = 2020) {
+    // Busca filmes de determinados gêneros a partir de um ano base
+    static async buscarFilmesPorGenero(pagina = 1, anoMinimo = 2020, genero = '') {
         try {
-            // IDs dos gêneros oficiais no TMDB:
-            // Ação: 28, Aventura: 12, Comédia: 35, Drama: 18, Fantasia: 14, Terror: 27
-            const generos = '28|12|35|18|14|27';
+            // Se o gênero foi selecionado, usamos ele. Se não, usamos a lista de gêneros padrão da home.
+            const generos = genero || '28|12|35|18|14|27';
 
-            // O '.gte' (Greater Than or Equal) garante que só venham filmes DESSE ano em diante
-            // Se quiser limitar um teto, adicione também '&primary_release_date.lte=2020-12-31'
-            const dataMinima = `${anoMinimo}-01-01`;
+            // Garante que o anoMinimo seja preenchido (defensivo contra strings vazias do query param)
+            const anoFiltro = anoMinimo || 2020;
+            const dataMinima = `${anoFiltro}-01-01`;
 
             const endpoint = `/discover/movie?language=pt-BR&page=${pagina}&primary_release_date.gte=${dataMinima}&with_genres=${generos}&sort_by=popularity.desc`;
 
@@ -46,7 +45,6 @@ class Tmdb {
             const data = await response.json();
             return data;
         } catch (error) {
-            console.error('Erro ao buscar filmes por gênero:', error);
             throw error;
         }
     }
