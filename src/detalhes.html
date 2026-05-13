@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LetterBoxed - Detalhes do Filme</title>
+    
+</head>
+<body>
+    <link rel="stylesheet" href="./css/detalhes.css">
+    <header>
+        <h1>LetterBoxed</h1>
+        <nav>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="#">Meu Perfil</a>
+            <a href="../index.html">Sair</a>
+        </nav>
+    </header>
+
+    <main class="container-detalhes">
+
+        <section class="area-poster">
+            <img id="detalhes-poster" src="https://via.placeholder.com/350x500" alt="Poster do Filme">
+        </section>
+
+        <section class="area-info">
+            <h2 id="detalhes-titulo">Carregando filme...</h2>
+
+            <div class="informacoes-filme">
+                <p><strong>Ano:</strong> <span id="detalhes-ano">---</span></p>
+                <p><strong>Gênero:</strong> <span id="detalhes-genero">---</span></p>
+                <p><strong>Nota TMDB:</strong> <span id="detalhes-nota">---</span></p>
+                <p><strong>Diretor:</strong> <span id="detalhes-diretor">---</span></p>
+            </div>
+
+            <div class="descricao-filme">
+                <h3>Sinopse</h3>
+                <p id="detalhes-sinopse">
+                    Buscando informações no servidor...
+                </p>
+            </div>
+
+            <div class="avaliacao-usuario">
+                <h3>Sua Avaliação</h3>
+                <div class="estrelas">
+                    <span>⭐</span>
+                    <span>⭐</span>
+                    <span>⭐</span>
+                    <span>⭐</span>
+                    <span>⭐</span>
+                </div>
+                <button class="btn-avaliar">Salvar Avaliação</button>
+            </div>
+        </section>
+    </main>
+
+    <section class="comentarios-container">
+        <h3>Comentários</h3>
+        <textarea placeholder="Escreva seu comentário..."></textarea>
+        <button class="btn-comentar">Enviar Comentário</button>
+
+        <div class="lista-comentarios">
+            <article class="comentario">
+                <h4>Marcos</h4>
+                <p>Gostei muito do filme. Atmosfera incrível.</p>
+            </article>
+        </div>
+    </section>
+
+    <script src="./js/detalhes.js" defer></script>
+</body>
+</html>

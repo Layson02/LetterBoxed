@@ -7,7 +7,9 @@ const PORT = process.env.PORT || 3000;
 // Middlewares globais
 app.use(express.json());
 app.use(cors());
-
+// Faz o servidor "enxergar" a pasta src onde estão seus HTMLs e CSS
+//app.use('/src', express.static('src'));
+app.use(express.static('src'));
 // ==========================================
 // IMPORTAÇÃO DAS ROTAS
 // ==========================================
