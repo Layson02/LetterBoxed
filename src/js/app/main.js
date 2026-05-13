@@ -86,8 +86,8 @@ function initCatalogo() {
     // ==========================================
 
     function renderizarCard(filme) {
-
-        const posterHtml = filme.poster
+        // Mantemos o nome da variável que você usou no seu link
+        const posterHtm = filme.poster
             ? `<img src="${filme.poster}" alt="Pôster de ${filme.titulo}" class="poster-filme">`
             : `<div class="poster-vazio">Sem Pôster</div>`;
 
@@ -97,8 +97,10 @@ function initCatalogo() {
 
         return `
             <article class="card-filme">
-                ${posterHtml}
-                <h3>${filme.titulo} (${filme.ano})</h3>
+                <a href="/src/detalhes.html?id=${filme.id}" style="text-decoration: none; color: inherit;">
+                    ${posterHtm}
+                    <h3>${filme.titulo} (${filme.ano})</h3>
+                </a>
                 <p><strong>Gênero:</strong> ${filme.genero}</p>
                 <p><strong>Nota TMDB:</strong> ⭐ ${filme.nota ? filme.nota.toFixed(1) : 0} / 10</p>
                 <p><strong>Nota do Site:</strong> ⭐ ${filme.notaPlataforma ? filme.notaPlataforma.toFixed(1) : 0} / 10</p>

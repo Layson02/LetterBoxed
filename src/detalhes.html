@@ -4,53 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LetterBoxed - Detalhes do Filme</title>
-    <link rel="stylesheet" href="../src/css/detalhes.css">
+    
 </head>
 <body>
-
-    <!-- HEADER -->
+    <link rel="stylesheet" href="./css/detalhes.css">
     <header>
         <h1>LetterBoxed</h1>
-
         <nav>
             <a href="catalogo.html">Catálogo</a>
-            <a href="perfil.html">Meu Perfil</a>
+            <a href="#">Meu Perfil</a>
             <a href="../index.html">Sair</a>
         </nav>
     </header>
 
-    <!-- CONTEÚDO PRINCIPAL -->
     <main class="container-detalhes">
 
-        <!-- POSTER -->
         <section class="area-poster">
-            <img src="https://via.placeholder.com/350x500" alt="Poster do Filme">
+            <img id="detalhes-poster" src="https://via.placeholder.com/350x500" alt="Poster do Filme">
         </section>
 
-        <!-- INFORMAÇÕES -->
         <section class="area-info">
-            <h2>Batman Begins</h2>
+            <h2 id="detalhes-titulo">Carregando filme...</h2>
 
             <div class="informacoes-filme">
-                <p><strong>Ano:</strong> 2005</p>
-                <p><strong>Gênero:</strong> Ação, Drama</p>
-                <p><strong>Nota TMDB:</strong> ⭐ 8.2 / 10</p>
-                <p><strong>Diretor:</strong> Christopher Nolan</p>
+                <p><strong>Ano:</strong> <span id="detalhes-ano">---</span></p>
+                <p><strong>Gênero:</strong> <span id="detalhes-genero">---</span></p>
+                <p><strong>Nota TMDB:</strong> <span id="detalhes-nota">---</span></p>
+                <p><strong>Diretor:</strong> <span id="detalhes-diretor">---</span></p>
             </div>
 
             <div class="descricao-filme">
                 <h3>Sinopse</h3>
-
-                <p>
-                    Após o assassinato de seus pais, Bruce Wayne viaja pelo mundo buscando maneiras de combater a injustiça.
-                    Ao retornar para Gotham, ele assume a identidade do Batman.
+                <p id="detalhes-sinopse">
+                    Buscando informações no servidor...
                 </p>
             </div>
 
-            <!-- AVALIAÇÃO -->
             <div class="avaliacao-usuario">
                 <h3>Sua Avaliação</h3>
-
                 <div class="estrelas">
                     <span>⭐</span>
                     <span>⭐</span>
@@ -58,34 +49,24 @@
                     <span>⭐</span>
                     <span>⭐</span>
                 </div>
-
                 <button class="btn-avaliar">Salvar Avaliação</button>
             </div>
         </section>
     </main>
 
-    <!-- COMENTÁRIOS -->
     <section class="comentarios-container">
         <h3>Comentários</h3>
-
         <textarea placeholder="Escreva seu comentário..."></textarea>
-
         <button class="btn-comentar">Enviar Comentário</button>
 
         <div class="lista-comentarios">
-
             <article class="comentario">
                 <h4>Marcos</h4>
                 <p>Gostei muito do filme. Atmosfera incrível.</p>
             </article>
-
-            <article class="comentario">
-                <h4>Usuário</h4>
-                <p>Um dos melhores filmes do Batman.</p>
-            </article>
-
         </div>
     </section>
-    <script src="/src/js/detalhes.js" defer></script>
+
+    <script src="./js/detalhes.js" defer></script>
 </body>
 </html>
