@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node src/js/api/server.js",
     "dev:web": "npx serve .",
-    "migration:generate": "sh src/js/scripts/migrate.sh"
+    "migration:generate": "sh src/js/scripts/migrate.sh",
+    "migration:run": "npx sequelize-cli db:migrate"
 
   },
   "dependencies": {
