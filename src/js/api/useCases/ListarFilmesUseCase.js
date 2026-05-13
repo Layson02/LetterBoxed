@@ -2,9 +2,9 @@ import Tmdb from '../tmdb.js';
 import Filme from '../../entidades/filme.js';
 
 export class ListarFilmesUseCase {
-    async execute({ pagina = 1, ano = 2020 }) {
+    async execute({ pagina = 1, genero = '', ano = 2020 }) {
         // Faz a chamada limpa passando as responsabilidades de requisição de volta para a classe Tmdb
-        const data = await Tmdb.buscarFilmesPorGenero(pagina, ano);
+        const data = await Tmdb.buscarFilmesPorGenero(pagina, ano, genero);
         
         if (!data || !data.results) {
             return [];
@@ -62,6 +62,8 @@ export class ListarFilmesUseCase {
                 ''                       // Roteiristas nulo
             );
         });
+
+
 
         return {
             paginaCorrente: data.page,

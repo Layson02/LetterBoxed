@@ -1,9 +1,12 @@
 import { ListarFilmesUseCase } from '../useCases/ListarFilmesUseCase.js';
 
+console.log('--- Controller carregado com sucesso ---'); // Teste de importação
+
 export class FilmesController {
-    // Método que será disparado pela rota GET /filmes
     async listar(req, res) {
+        console.log('--- Método listar foi disparado! ---'); // Teste de rota
         try {
+            // ... resto do código
             // Pegamos as variáveis da URL (ex: /filmes?pagina=2&genero=28)
             const pagina = req.query.pagina || 1;
             const genero = req.query.genero || '';
@@ -21,6 +24,7 @@ export class FilmesController {
         } catch (error) {
             console.error('Falha no FilmesController:', error);
             // Devolvemos um erro claro pro frontend se algo quebrar no TMDB
+            console.log("DETALHE DO ERRO:", error.message);
             return res.status(500).json({ error: 'Erro interno ao tentar listar os filmes' });
         }
     }

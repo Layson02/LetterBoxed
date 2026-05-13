@@ -7,13 +7,15 @@ const PORT = process.env.PORT || 3000;
 // Middlewares globais
 app.use(express.json());
 app.use(cors());
+// Faz o servidor "enxergar" a pasta src onde estão seus HTMLs e CSS
+//app.use('/src', express.static('src'));
+app.use(express.static('src'));
+// ==========================================
+// IMPORTAÇÃO DAS ROTAS
+// ==========================================
+import filmesRotas from './rotas/FilmesRotas.js';
 
-import { FilmesController } from './controllers/FilmesController.js';
-
-// Instanciamos as controllers
-const filmesController = new FilmesController();
-
-// Rota de teste
+// Rota de teste central
 app.get('/health', (req, res) => {
     res.json({
         status: 'UP',
@@ -21,8 +23,8 @@ app.get('/health', (req, res) => {
     });
 });
 
-// Endpoint: Listar todos os filmes (Busca do TMDB no momento)
-app.get('/filmes', filmesController.listar);
+// Anexando o roteador de filmes: tudo que começar com "/filmes" cai nesse gerenciador
+app.use('/filmes', filmesRotas);
 
 // Inicialização do Servidor
 app.listen(PORT, () => {

@@ -12,6 +12,21 @@ class Filme {
         this.poster = poster;
         this.roteiristas = roteiristas;
     }
+
+    adicionarAvaliacao(avaliacao) {
+        this.avaliacoes.push(avaliacao);
+        this.calcularNota();
+    }
+
+    calcularNota() {
+        if (this.avaliacoes.length === 0) {
+            this.nota = 0;
+            return;
+        }
+
+        const soma = this.avaliacoes.reduce((acc, avaliacao) => acc + avaliacao.nota, 0);
+        this.nota = soma / this.avaliacoes.length;
+    }
 }
 
 export default Filme;
