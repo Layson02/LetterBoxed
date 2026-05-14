@@ -1,4 +1,5 @@
 import { ListarFilmesUseCase } from '../useCases/ListarFilmesUseCase.js';
+import { SeedService } from '../useCases/SeedService.js';
 
 console.log('--- Controller carregado com sucesso ---'); // Teste de importação
 
@@ -26,6 +27,22 @@ export class FilmesController {
             // Devolvemos um erro claro pro frontend se algo quebrar no TMDB
             console.log("DETALHE DO ERRO:", error.message);
             return res.status(500).json({ error: 'Erro interno ao tentar listar os filmes' });
+        }
+    }
+
+    async seed(req, res) {
+        console.log('--- Método seed foi disparado pelo Cron Job / Endpoint ---');
+        try {
+            const paginas = parseInt(req.query.paginas) || 2;
+            const dataMinima = req.query.dataMinima || null;
+
+            const seedService = new SeedService();
+            const resultado = await seedService.executarSeed(paginas, dataMinima);
+
+            return res.status(200).json(resultado);
+        } catch (error) {
+            console.error('Falha no Seed de Filmes:', error);
+            return res.status(500).json({ error: 'Erro interno durante a execução do seed' });
         }
     }
 }
