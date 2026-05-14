@@ -22,3 +22,5 @@ Thumbs.db
 
 # Outros
 Documents/
+*.session.sql
+scratch/

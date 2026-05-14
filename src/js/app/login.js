@@ -12,7 +12,7 @@
     // PÁGINA DE LOGIN (index.html)
     // ==========================================
 
-    App.createPage('/index.html', () => {
+    function initLogin() {
         // Cria o estado reativo para os campos do formulário
         const estado = App.state({
             usuario: '',
@@ -24,7 +24,6 @@
         App.bindInput('#senha', estado, 'senha');
 
         // Intercepta a submissão do formulário de login.
-        // Precisamos interceptar ANTES do Router para processar os dados.
         App.onSubmit('#form-login', async (evento) => {
             const { usuario, senha } = estado;
 
@@ -33,17 +32,33 @@
                 return;
             }
 
+            try {
+                const resposta = await fetch('http://localhost:3000/usuarios/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: usuario, senha })
+                });
 
+                const dados = await resposta.json();
 
-            // TODO: Aqui entraria a chamada real para a API de autenticação
-            // const resposta = await fetch('http://localhost:3000/usuarios/login', { ... });
+                if (!resposta.ok) {
+                    alert(dados.erro || 'Erro ao fazer login!');
+                    return;
+                }
 
-            // Por enquanto, navega direto para o catálogo
-            App.navigateTo('src/catalogo.html');
+                localStorage.setItem('token', dados.token);
+                localStorage.setItem('usuario', JSON.stringify(dados.dados));
+
+                App.navigateTo('/src/catalogo.html');
+            } catch (erro) {
+                alert('Erro de conexão ao tentar fazer login.');
+                console.error(erro);
+            }
         });
+    }
 
-
-    });
+    App.createPage('/index.html', initLogin);
+    App.createPage('/', initLogin);
 
     // ==========================================
     // REGISTRO DE OUTRAS PÁGINAS

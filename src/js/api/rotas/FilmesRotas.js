@@ -1,15 +1,13 @@
 import { Router } from 'express';
 import { FilmesController } from '../controllers/FilmesController.js';
+import { authMiddleware } from '../middlewares/authMiddleware.js';
 
 const filmesRotas = Router();
 const filmesController = new FilmesController();
 
 // Como no server.js usamos "app.use('/filmes', filmesRoutes)", 
 // a rota "/" aqui dentro já representa nativamente "/filmes".
-//filmesRotas.get('/', filmesController.listar);
-filmesRotas.get('/', (req, res) => filmesController.listar(req, res));
-// (Ponto de inserção para as futuras rotas):
-// filmesRoutes.post('/:id/avaliar', avaliacoesController.avaliar);
-// filmesRoutes.get('/:id', filmesController.buscarPorId);
+filmesRotas.get('/', authMiddleware, (req, res) => filmesController.listar(req, res));
+filmesRotas.post('/seed', (req, res) => filmesController.seed(req, res));
 
 export default filmesRotas;

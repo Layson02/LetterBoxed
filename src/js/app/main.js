@@ -1,17 +1,25 @@
 // ==========================================
 // main.js — Página do Catálogo de Filmes
-// Refatorado para usar o mini framework reativo com Logs Detalhados
+// Refatorado para usar o mini framework reativo com Paginação e Filtros
 // ==========================================
 
 import App from '../core/App.js';
-
-
 
 // ==========================================
 // LÓGICA DA PÁGINA DO CATÁLOGO
 // ==========================================
 
 function initCatalogo() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Acesso restrito. Faça login para continuar.');
+        window.location.href = '/';
+        return;
+    }
+
+    let paginaAtual = 1;
+    let totalPaginas = 1;
+
     // ==========================================
     // ESTADO REATIVO
     // ==========================================
@@ -26,41 +34,65 @@ function initCatalogo() {
     // BINDINGS (conecta o HTML ao estado)
     // ==========================================
 
-
     App.bindList('#catalogo-filmes', estado, 'filmes', renderizarCard);
 
     // ==========================================
     // EVENTOS
     // ==========================================
 
+    App.onClick('a[href*="index.html"]', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('token');
+        localStorage.removeItem('usuario');
+        window.location.href = '/';
+    });
+
     App.onClick('#btn-buscar', (e) => {
         e.preventDefault();
         console.log('[main.js] Botão de buscar clicado!');
+        paginaAtual = 1;
+        buscarFilmes(paginaAtual);
+    });
 
-        const genero = document.querySelector('#filtro-genero')?.value || '';
-        const ano = document.querySelector('#filtro-ano')?.value || '';
+    App.onClick('#btn-ant', (e) => {
+        e.preventDefault();
+        if (paginaAtual > 1) {
+            paginaAtual--;
+            buscarFilmes(paginaAtual);
+        }
+    });
 
-        console.log(`[main.js] Filtros de busca - Gênero: "${genero}", Ano: "${ano}"`);
-        buscarFilmes(1, genero, ano);
+    App.onClick('#btn-prox', (e) => {
+        e.preventDefault();
+        if (paginaAtual < totalPaginas) {
+            paginaAtual++;
+            buscarFilmes(paginaAtual);
+        }
     });
 
     // ==========================================
     // LÓGICA DE NEGÓCIO
     // ==========================================
 
-    async function buscarFilmes(pagina = 1, genero = '', ano = '') {
-
+    async function buscarFilmes(pagina = 1) {
         try {
             const container = document.querySelector('#catalogo-filmes');
             if (container) {
                 container.innerHTML = '<p>Carregando filmes...</p>';
             }
 
-            const params = new URLSearchParams({ pagina, genero, ano }).toString();
+            const titulo = document.querySelector('#busca-filme')?.value || '';
+            const genero = document.querySelector('#filtro-genero')?.value || '';
+            const ano = document.querySelector('#filtro-ano')?.value || '';
+
+            console.log(`[main.js] Buscando - Página: ${pagina}, Título: "${titulo}", Gênero: "${genero}", Ano: "${ano}"`);
+
+            const params = new URLSearchParams({ pagina, genero, ano, titulo }).toString();
             const url = `http://localhost:3000/filmes?${params}`;
 
-            const response = await fetch(url);
-
+            const response = await fetch(url, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
 
             if (!response.ok) {
                 throw new Error(`Servidor não respondeu OK. Status: ${response.status}`);
@@ -68,9 +100,24 @@ function initCatalogo() {
 
             const data = await response.json();
 
-
-            // Ao atribuir o array, o bindList redesenha a lista automaticamente!
             estado.filmes = data.filmes || [];
+            paginaAtual = data.paginaCorrente || 1;
+            totalPaginas = data.totalPaginas || 1;
+
+            const info = document.querySelector('#info-paginas');
+            if (info) {
+                info.textContent = `Página ${paginaAtual} de ${totalPaginas}`;
+            }
+
+            const btnAnt = document.querySelector('#btn-ant');
+            if (btnAnt) {
+                btnAnt.disabled = paginaAtual <= 1;
+            }
+
+            const btnProx = document.querySelector('#btn-prox');
+            if (btnProx) {
+                btnProx.disabled = paginaAtual >= totalPaginas;
+            }
 
         } catch (error) {
             console.error('[main.js] Erro de requisição:', error);
@@ -86,7 +133,6 @@ function initCatalogo() {
     // ==========================================
 
     function renderizarCard(filme) {
-        // Mantemos o nome da variável que você usou no seu link
         const posterHtm = filme.poster
             ? `<img src="${filme.poster}" alt="Pôster de ${filme.titulo}" class="poster-filme">`
             : `<div class="poster-vazio">Sem Pôster</div>`;
@@ -113,7 +159,7 @@ function initCatalogo() {
     }
 
     // Inicia a primeira busca
-    buscarFilmes();
+    buscarFilmes(1);
 }
 
 // ==========================================
@@ -121,10 +167,10 @@ function initCatalogo() {
 // ==========================================
 
 App.createPage('/src/catalogo.html', initCatalogo);
+App.createPage('/src/catalogo', initCatalogo);
 
 // Compatibilidade para acesso direto
-if (window.location.pathname.includes('catalogo.html')) {
-
+if (window.location.pathname.includes('catalogo')) {
     App.createPage(window.location.pathname, initCatalogo);
     App.start();
 }

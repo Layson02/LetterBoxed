@@ -16,6 +16,18 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
+  frontend:
+    build: .
+    container_name: letterBoxed_frontend
+    command: npm run dev:web
+    ports:
+      - "8080:3000"
+    env_file:
+      - .env
+    depends_on:
+      - app
+    restart: unless-stopped
+
   db:
     image: postgres:16-alpine
     environment:

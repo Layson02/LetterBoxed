@@ -19,7 +19,7 @@ class Router {
         this.hooks = {};
 
         // Seletor do container principal onde as views serão injetadas
-        this.containerSelector = 'main';
+        this.containerSelector = 'body';
     }
 
     /**
@@ -31,7 +31,10 @@ class Router {
         const paginaAtual = window.location.pathname;
         const mainAtual = document.querySelector(this.containerSelector);
         if (mainAtual) {
-            this.cache[this._normalizarUrl(paginaAtual)] = mainAtual.innerHTML;
+            this.cache[this._normalizarUrl(paginaAtual)] = {
+                main: mainAtual.innerHTML,
+                css: Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map(l => l.href)
+            };
         }
 
         // Intercepta cliques em links <a>
@@ -155,10 +158,12 @@ class Router {
 
         try {
             let htmlMain;
+            let cssLinks = [];
 
             // Verifica se já temos no cache
             if (this.cache[chave]) {
-                htmlMain = this.cache[chave];
+                htmlMain = this.cache[chave].main;
+                cssLinks = this.cache[chave].css || [];
                 console.log(`[Router] Usando cache para: ${chave}`);
             } else {
                 // Faz o fetch da página
@@ -183,12 +188,33 @@ class Router {
                     htmlMain = docVirtual.body.innerHTML;
                 }
 
+                // Extrai as folhas de estilo
+                docVirtual.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href) {
+                        const hrefResolvido = new URL(href, new URL(url, window.location.origin)).href;
+                        cssLinks.push(hrefResolvido);
+                    }
+                });
+
                 // Guarda no cache
-                this.cache[chave] = htmlMain;
+                this.cache[chave] = { main: htmlMain, css: cssLinks };
             }
 
             // Substitui o conteúdo do container
             container.innerHTML = htmlMain;
+
+            // Injeta os arquivos CSS que faltam
+            cssLinks.forEach(href => {
+                const jaExiste = Array.from(document.querySelectorAll('link[rel="stylesheet"]'))
+                    .some(l => l.href === href);
+                if (!jaExiste) {
+                    const novoLink = document.createElement('link');
+                    novoLink.rel = 'stylesheet';
+                    novoLink.href = href;
+                    document.head.appendChild(novoLink);
+                }
+            });
 
             // Atualiza a URL do navegador (sem recarregar)
             if (atualizarHistorico) {

@@ -8,7 +8,7 @@ RUN npm i
 
 COPY . .
 
-RUN chmod +x start.sh
+RUN chmod +x start.sh && sed -i 's/\r$//' start.sh src/js/scripts/migrate.sh || true
 
 EXPOSE 3000
 

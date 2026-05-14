@@ -36,6 +36,10 @@ const Filme = sequelize.define('Filme', {
   },
   roteiristas: {
     type: DataTypes.STRING,
+  },
+  tmdb_id: {
+    type: DataTypes.INTEGER,
+    unique: true,
   }
 }, {
   tableName: 'filmes',

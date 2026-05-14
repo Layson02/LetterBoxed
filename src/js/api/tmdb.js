@@ -61,6 +61,24 @@ class Tmdb {
             throw error;
         }
     }
+
+    static async buscarFilmesRecentes(pagina = 1, dataMinima = null) {
+        try {
+            let endpoint = `/discover/movie?language=pt-BR&page=${pagina}&sort_by=popularity.desc`;
+            if (dataMinima) {
+                endpoint += `&primary_release_date.gte=${dataMinima}`;
+            }
+            const response = await fetch(`${this.baseUrl}${endpoint}`, this.options);
+            if (!response.ok) {
+                throw new Error(`Erro na API do TMDB: ${response.status} - ${response.statusText}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Erro ao buscar filmes recentes:', error);
+            throw error;
+        }
+    }
 }
 
 export default Tmdb;

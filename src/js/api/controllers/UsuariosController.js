@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 import { UsuarioRepositorio } from '../../bd/repositorios/usuarioRepositorio.js';
 import { LoginUseCase } from '../useCases/LoginUseCase.js';
 
@@ -19,10 +20,15 @@ export class UsuariosController {
             // Se a senha estiver errada, o UseCase quebra o programa com throw Error na hora!
             const resultado = await loginUseCase.execute({ email, senha });
 
+            // Gera o token JWT
+            const segredo = process.env.JWT_SECRET || 'chave_secreta_padrao';
+            const token = jwt.sign({ id: resultado.id, email: resultado.email }, segredo, { expiresIn: '2h' });
+
             // Se o programa não quebrou de erro, o Return devolveu o nosso usuário limpo.
             // Retorna a bandeira de sucesso (Status HTTP 200 = Sucesso / OK) com as informações.
             return res.status(200).json({
                 mensagem: "Autenticação aprovada!",
+                token,
                 dados: resultado
             });
 
