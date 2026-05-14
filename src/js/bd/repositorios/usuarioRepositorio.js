@@ -2,7 +2,16 @@ import { LocalStorage } from 'node-localstorage';
 const localStorage = new LocalStorage('./scratch');
 
 export class UsuarioRepositorio {
+    _garantirAdmin() {
+        const usuariosSalvos = localStorage.getItem('usuarios');
+        if (!usuariosSalvos) {
+            const admin = [{ id: 1, nome: 'Administrador', email: 'admin@admin.com', senha: 'admin123' }];
+            localStorage.setItem('usuarios', JSON.stringify(admin));
+        }
+    }
+
     async buscarPorId(id) {
+        this._garantirAdmin();
         const usuariosSalvos = localStorage.getItem('usuarios');
         if (!usuariosSalvos) return null;
 
@@ -12,6 +21,7 @@ export class UsuarioRepositorio {
 
     // Função de checagem super popular e útil em entidades de usuário (ex: Login, Duplicidade de Cadastro)
     async buscarPorEmail(email) {
+        this._garantirAdmin();
         const usuariosSalvos = localStorage.getItem('usuarios');
         if (!usuariosSalvos) return null;
 

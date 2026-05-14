@@ -12,6 +12,13 @@ import App from '../core/App.js';
 // ==========================================
 
 function initCatalogo() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Acesso restrito. Faça login para continuar.');
+        window.location.href = '/';
+        return;
+    }
+
     // ==========================================
     // ESTADO REATIVO
     // ==========================================
@@ -32,6 +39,13 @@ function initCatalogo() {
     // ==========================================
     // EVENTOS
     // ==========================================
+
+    App.onClick('a[href*="index.html"]', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('token');
+        localStorage.removeItem('usuario');
+        window.location.href = '/';
+    });
 
     App.onClick('#btn-buscar', (e) => {
         e.preventDefault();
@@ -59,7 +73,9 @@ function initCatalogo() {
             const params = new URLSearchParams({ pagina, genero, ano }).toString();
             const url = `http://localhost:3000/filmes?${params}`;
 
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
 
 
             if (!response.ok) {
@@ -121,10 +137,10 @@ function initCatalogo() {
 // ==========================================
 
 App.createPage('/src/catalogo.html', initCatalogo);
+App.createPage('/src/catalogo', initCatalogo);
 
 // Compatibilidade para acesso direto
-if (window.location.pathname.includes('catalogo.html')) {
-
+if (window.location.pathname.includes('catalogo')) {
     App.createPage(window.location.pathname, initCatalogo);
     App.start();
 }
