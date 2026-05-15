@@ -46,9 +46,10 @@
             // Por enquanto, navega direto para o catálogo
             window.location.hash = '#/catalogo';
         });
+    }
 
-
-    });
+    // Inicia a página de login
+    initLogin();
 
     // ==========================================
     // REGISTRO DE OUTRAS PÁGINAS
