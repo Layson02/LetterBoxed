@@ -1,0 +1,36 @@
+<header class="header-perfil">
+    <div class="perfil-usuario">
+        <img id="foto-perfil" src="https://via.placeholder.com/150" alt="Foto do Perfil" class="foto-usuario">
+        <div class="info-usuario">
+            <h1 id="nome-usuario">João Silva</h1>
+            <p id="email-usuario">joao@example.com</p>
+        </div>
+    </div>
+    <nav class="nav-perfil">
+        <a href="catalogo.html">← Voltar ao Catálogo</a>
+        <a href="../index.html">Sair</a>
+    </nav>
+</header>
+
+<main class="container-perfil">
+    <section class="stats-usuario">
+        <div class="stat-item">
+            <span class="stat-numero" id="total-filmes">24</span>
+            <span class="stat-label">Filmes Assistidos</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-numero" id="media-avaliacao">8.2</span>
+            <span class="stat-label">Nota Média</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-numero" id="total-avaliacoes">18</span>
+            <span class="stat-label">Avaliações Deixadas</span>
+        </div>
+    </section>
+
+    <section class="filmes-usuario">
+        <h2>Meus Filmes Favoritos</h2>
+        <!-- A equipe de JS injetará os cards dos filmes aqui via id="user-movies-grid" -->
+        <div id="user-movies-grid"></div>
+    </section>
+</main>
