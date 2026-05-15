@@ -26,12 +26,65 @@ O **LetterBoxed** nasceu para resolver a dificuldade de manter um histórico org
 
 ## 📁 Estrutura do Projeto
 
-A arquitetura do Front-end foi organizada da seguinte forma:
+Arquitetura **SPA (Single Page Application)** - Uma única página que carrega todas as views dinamicamente:
 
 ```text
 📦 LetterBoxed
- ┣ 📂 css           # Arquivos de estilização (layout responsivo)
- ┣ 📂 js            # Lógica de integração com API, DOM e Banco de Dados
- ┣ 📂 src           # Páginas secundárias do sistema
- ┃ ┗ 📜 catalogo.html
- ┗ 📜 index.html    # Página inicial e acesso do aluno (Login)
+ ├─ 📄 index.html ⭐ (Página única - entry point)
+ │
+ ├─ 📁 src/
+    ├─ 📁 css/
+    │  ├─ style.css
+    │  └─ components.css
+    │
+    ├─ 📁 js/
+    │  ├─ 📄 main.js ⭐ (Orquestrador SPA)
+    │  ├─ 📁 core/
+    │  │  ├─ Router.js
+    │  │  ├─ App.js
+    │  │  └─ Reactivity.js
+    │  ├─ 📁 views/ ⭐ (Views modulares)
+    │  │  ├─ loginView.js
+    │  │  ├─ registroView.js
+    │  │  ├─ catalogoView.js
+    │  │  ├─ perfilView.js
+    │  │  └─ detalhesView.js
+    │  ├─ 📁 api/
+    │  ├─ 📁 models/
+    │  └─ 📁 bd/
+    │
+    └─ 📁 pages/
+       ├─ catalogo.html
+       ├─ perfil.html
+       ├─ detalhes.html
+       └─ registro.html
+ 
+```
+
+## 🏗️ Arquitetura
+
+A aplicação utiliza **SPA com Hash Routing** (navegação via #/página):
+
+| Rota | View | Status |
+|------|------|--------|
+| `#/login` | loginView | Pública |
+| `#/registro` | registroView | Pública |
+| `#/catalogo` | catalogoView | Protegido |
+| `#/perfil` | perfilView | Protegido |
+| `#/detalhes/:id` | detalhesView | Protegido |
+| `#/logout` | Limpa localStorage | Público |
+
+**Fluxo:**
+1. User acessa `index.html` (uma única vez)
+2. `main.js` coordena rotas via hash
+3. Views são módulos JS reutilizáveis
+4. Sem reload de página = experiência fluida
+
+---
+
+## 🛠️ Responsabilidades
+
+- **Layson (HTML):** Estrutura e templates
+- **Marcos (CSS):** Estilos e responsividade  
+- **Gabriel (JavaScript):** Lógica, API e autenticação
+- **Lucas (Backend/Org):** Express, BD e coordenação

@@ -97,7 +97,7 @@ function initCatalogo() {
 
         return `
             <article class="card-filme">
-                <a href="/src/detalhes.html?id=${filme.id}" style="text-decoration: none; color: inherit;">
+                <a href="#/detalhes/${filme.id}" style="text-decoration: none; color: inherit;">
                     ${posterHtm}
                     <h3>${filme.titulo} (${filme.ano})</h3>
                 </a>

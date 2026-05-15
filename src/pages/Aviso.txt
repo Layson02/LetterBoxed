@@ -1,0 +1,1 @@
+Aviso: a pasta `pages` está em desuso e é mantida apenas para referência e legado.

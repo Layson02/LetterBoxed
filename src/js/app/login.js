@@ -2,6 +2,12 @@
 // login.js — Bootstrap da aplicação + Lógica de Login
 // Este script roda no index.html (carregado com defer, sem type="module")
 // Por isso usamos import() dinâmico para carregar os módulos do framework.
+// 
+// ⚠️ SPA - IMPORTANTE PARA MARCOS E GABRIEL:
+// Este projeto usa Single Page Application (SPA).
+// TODO funciona a partir do index.html. Os arquivos em src/pages/
+// são mantidos APENAS COMO REFERÊNCIA VISUAL e não são utilizados.
+// Foco: index.html + views renderizadas em JavaScript via roteador hash.
 // ==========================================
 
 (async function bootstrap() {
@@ -39,7 +45,7 @@
             // const resposta = await fetch('http://localhost:3000/usuarios/login', { ... });
 
             // Por enquanto, navega direto para o catálogo
-            App.navigateTo('src/catalogo.html');
+            window.location.hash = '#/catalogo';
         });
 
 

@@ -1,6 +1,13 @@
 /* CSS styles para o LetterBoxed */
 /* Bora Marcos! */
 
+/* 
+⚠️ SPA - IMPORTANTE:
+Este projeto é uma Single Page Application (SPA). Todo o CSS aqui será aplicado
+ao index.html. Os arquivos em src/pages/ são apenas REFERÊNCIA VISUAL e não são utilizados.
+Marcos: trabalhe com os seletores da renderização em JavaScript (views).
+*/
+
 * {
     margin: 0;
     padding: 0;
