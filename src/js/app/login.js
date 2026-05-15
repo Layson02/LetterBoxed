@@ -18,7 +18,7 @@
     // PÁGINA DE LOGIN (index.html)
     // ==========================================
 
-    App.createPage('/index.html', () => {
+    function initLogin() {
         // Cria o estado reativo para os campos do formulário
         const estado = App.state({
             usuario: '',
@@ -30,7 +30,6 @@
         App.bindInput('#senha', estado, 'senha');
 
         // Intercepta a submissão do formulário de login.
-        // Precisamos interceptar ANTES do Router para processar os dados.
         App.onSubmit('#form-login', async (evento) => {
             const { usuario, senha } = estado;
 

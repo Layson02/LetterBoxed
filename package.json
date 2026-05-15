@@ -10,14 +10,15 @@
     "start": "node src/js/api/server.js",
     "dev:web": "npx serve .",
     "migration:generate": "sh src/js/scripts/migrate.sh",
-    "migration:run": "npx sequelize-cli db:migrate"
-
+    "migration:run": "npx sequelize-cli db:migrate",
+    "seed:tmdb": "node src/js/scripts/seed-tmdb.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "node-localstorage": "^3.0.5",
     "pg": "^8.20.0",
     "pg-hstore": "^2.3.4",

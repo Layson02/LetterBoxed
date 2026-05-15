@@ -1,4 +1,13 @@
-<header>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LetterBoxed - Catálogo</title>
+</head>
+<body>
+    <link rel="stylesheet" href="./css/catalogo.css">
+    <header>
         <h1>LetterBoxed</h1>
         <nav>
             <a href="perfil.html">Meu Perfil</a>
@@ -12,19 +21,41 @@
             
             <select id="filtro-genero">
                 <option value="">Todos os Gêneros</option>
-                <option value="28">Ação</option>
-                <option value="35">Comédia</option>
+                <option value="Ação">Ação</option>
+                <option value="Aventura">Aventura</option>
+                <option value="Animação">Animação</option>
+                <option value="Comédia">Comédia</option>
+                <option value="Crime">Crime</option>
+                <option value="Documentário">Documentário</option>
+                <option value="Drama">Drama</option>
+                <option value="Família">Família</option>
+                <option value="Fantasia">Fantasia</option>
+                <option value="Ficção Científica">Ficção Científica</option>
+                <option value="Terror">Terror</option>
+                <option value="Romance">Romance</option>
+                <option value="Thriller">Thriller</option>
             </select>
 
             <select id="filtro-ano">
                 <option value="">Ano de Lançamento</option>
                 <option value="2026">2026</option>
                 <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
             </select>
 
             <button id="btn-buscar">Buscar</button>
         </section>
 
         <section id="catalogo-filmes" class="grid-filmes">
-            </section>
+        </section>
 
+        <section id="paginacao" class="paginacao-container">
+            <button id="btn-ant" disabled>Anterior</button>
+            <span id="info-paginas">Página 1</span>
+            <button id="btn-prox" disabled>Próxima</button>
+        </section>
+    </main>
