@@ -78,7 +78,7 @@ Arquitetura **SPA (Single Page Application)** - Uma única página que carrega t
 
 ```text
 📦 LetterBoxed
- ├─ 📄 index.html ⭐ (Página única - entry point)
+ ├─ 📄 index.html  (Página única - entry point)
  │
  ├─ 📁 src/
     ├─ 📁 css/
@@ -86,12 +86,12 @@ Arquitetura **SPA (Single Page Application)** - Uma única página que carrega t
     │  └─ components.css
     │
     ├─ 📁 js/
-    │  ├─ 📄 main.js ⭐ (Orquestrador SPA)
+    │  ├─ 📄 main.js  (Orquestrador SPA)
     │  ├─ 📁 core/
     │  │  ├─ Router.js
     │  │  ├─ App.js
     │  │  └─ Reactivity.js
-    │  ├─ 📁 views/ ⭐ (Views modulares)
+    │  ├─ 📁 views/  (Views modulares)
     │  │  ├─ loginView.js
     │  │  ├─ registroView.js
     │  │  ├─ catalogoView.js
@@ -101,7 +101,7 @@ Arquitetura **SPA (Single Page Application)** - Uma única página que carrega t
     │  ├─ 📁 models/
     │  └─ 📁 bd/
     │
-    └─ 📁 pages/
+    └─ 📁 pages/ (legado)
        ├─ catalogo.html
        ├─ perfil.html
        ├─ detalhes.html
